@@ -1,6 +1,5 @@
 package ke.co.toshngure.androidcoreutils
 
-import android.app.Application
 import androidx.multidex.MultiDexApplication
 import com.facebook.stetho.Stetho
 import ke.co.toshngure.androidcoreutils.api.NetworkUtilCallback
