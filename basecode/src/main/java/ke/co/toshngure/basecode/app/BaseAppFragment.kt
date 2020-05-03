@@ -13,6 +13,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,8 @@ import ke.co.toshngure.extensions.hide
 import ke.co.toshngure.extensions.show
 import ke.co.toshngure.extensions.showIf
 import kotlinx.android.synthetic.main.basecode_fragment_base_app.*
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -270,7 +273,22 @@ abstract class BaseAppFragment<FetchedNetworkModel> : NavHostFragment(),
                     // If the error has been handled in a child class
                     val handledError = onRequestError(response.code(), errorResponseBody)
                     if (!handledError) {
-                        showNetworkErrorDialog(errorMessage)
+
+                        try {
+
+                            val errorJson = JSONObject(errorMessage)
+                            val message = errorJson.getString("error")
+
+                            if(TextUtils.isEmpty(message)){
+                                showNetworkErrorDialog(errorMessage)
+                            }else {
+                                showNetworkErrorDialog(message)
+                            }
+
+                        }catch (e: JSONException){
+                            showNetworkErrorDialog(errorMessage)
+                        }
+
                     }
 
                 }
@@ -348,6 +366,7 @@ abstract class BaseAppFragment<FetchedNetworkModel> : NavHostFragment(),
 
     private fun showNetworkErrorDialog(message: String?) {
         if (mLoadingConfig.showErrorDialog) {
+
             activity?.let {
                 MaterialAlertDialogBuilder(it)
                     .setCancelable(false)
