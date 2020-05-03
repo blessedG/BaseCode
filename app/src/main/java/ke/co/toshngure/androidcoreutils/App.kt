@@ -1,6 +1,7 @@
 package ke.co.toshngure.androidcoreutils
 
 import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.facebook.stetho.Stetho
 import ke.co.toshngure.androidcoreutils.api.NetworkUtilCallback
 import ke.co.toshngure.basecode.paging.sync.SyncStatesDatabase
@@ -8,7 +9,7 @@ import ke.co.toshngure.basecode.logging.BeeLog
 import ke.co.toshngure.basecode.net.NetworkUtil
 import ke.co.toshngure.basecode.util.PrefUtils
 
-class App : Application() {
+class App : MultiDexApplication() {
 
 
     override fun onCreate() {

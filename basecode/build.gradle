@@ -63,7 +63,7 @@ dependencies {
     implementation "androidx.paging:paging-runtime:2.1.2"
 
     // Shared prefs
-    implementation "androidx.preference:preference-ktx:1.1.0"
+    implementation "androidx.preference:preference-ktx:1.1.1"
 
     // Workers - kotlin + coroutines
     implementation "androidx.work:work-runtime-ktx:2.3.4"
@@ -78,11 +78,11 @@ dependencies {
     implementation 'com.google.android.gms:play-services-base:17.2.1'
     implementation 'com.google.android.gms:play-services-auth-api-phone:17.4.0'
     //Optional for phone number hint
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
 
     // Navigation
-    implementation 'androidx.navigation:navigation-fragment:2.2.1'
-    implementation "androidx.navigation:navigation-ui-ktx:2.2.1"
+    implementation 'androidx.navigation:navigation-fragment:2.2.2'
+    implementation "androidx.navigation:navigation-ui-ktx:2.2.2"
 
     /*Retrofit*/
     implementation 'com.squareup.retrofit2:retrofit:2.7.2'
@@ -92,7 +92,7 @@ dependencies {
     implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
 
     //Google material
-    implementation 'com.google.android.material:material:1.2.0-alpha05'
+    implementation 'com.google.android.material:material:1.2.0-alpha06'
 
     //  Snack alert
     implementation 'com.github.tuanfadbg:SnackAlert:1.5.13'

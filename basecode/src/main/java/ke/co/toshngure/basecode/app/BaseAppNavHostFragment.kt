@@ -55,7 +55,7 @@ import retrofit2.Response
  * Email : anthonyngure25@gmail.com.
  */
 
-abstract class BaseAppFragment<FetchedNetworkModel> : Fragment(),
+abstract class BaseAppNavHostFragment<FetchedNetworkModel> : NavHostFragment(),
     SwipeRefreshLayout.OnRefreshListener {
 
 
@@ -256,8 +256,8 @@ abstract class BaseAppFragment<FetchedNetworkModel> : Fragment(),
                 if (response.isSuccessful && response.body() != null) {
                     val body = response.body()
                     DataHandlerTask(
-                        this@BaseAppFragment::processDataInBackground,
-                        this@BaseAppFragment::onDataReady
+                        this@BaseAppNavHostFragment::processDataInBackground,
+                        this@BaseAppNavHostFragment::onDataReady
                     ).execute(body)
                 } else if (response.code() == 404) {
                     errorLayout.show()
