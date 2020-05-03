@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@+id/mainFragment"
+            android:id="@+id/main_navigation">
+
+    <fragment
+            android:id="@+id/mainFragment"
+            android:name="ke.co.toshngure.androidcoreutils.fragment.MainFragment"
+            android:label="@string/app_name"
+            tools:layout="@layout/fragment_main"/>
+
+    <fragment
+            android:id="@+id/postsFragment"
+            android:name="ke.co.toshngure.androidcoreutils.posts.PostsFragment"
+            android:label="@string/posts"
+            tools:layout="@layout/basecode_fragment_base_app"/>
+
+    <fragment
+            android:id="@+id/albumsFragment"
+            android:name="ke.co.toshngure.androidcoreutils.albums.AlbumsFragment"
+            android:label="@string/albums"
+            tools:layout="@layout/basecode_fragment_base_app"/>
+
+    <fragment
+            android:id="@+id/photosFragment"
+            android:name="ke.co.toshngure.androidcoreutils.photos.PhotosFragment"
+            android:label="@string/photos"
+            tools:layout="@layout/basecode_fragment_base_app">
+
+        <argument
+                android:name="albumId"
+                app:argType="long"
+                app:nullable="false"/>
+
+    </fragment>
+
+    <fragment
+            android:id="@+id/testImagesPickerFragment"
+            android:name="ke.co.toshngure.androidcoreutils.fragment.TestImagesPickerFragment"
+            android:label="@string/images_picker"
+            tools:layout="@layout/fragment_images_picker"/>
+
+    <fragment
+            android:id="@+id/usersFragment"
+            android:name="ke.co.toshngure.androidcoreutils.users.UsersFragment"
+            android:label="@string/users"
+            tools:layout="@layout/basecode_fragment_base_app"/>
+
+    <fragment
+        android:id="@+id/smsRetrieverFragment"
+        android:name="ke.co.toshngure.androidcoreutils.fragment.SmsRetrieverFragment"
+        android:label="@string/sms_retriever"
+        tools:layout="@layout/basecode_fragment_base_app"/>
+
+    <fragment
+        android:id="@+id/gpxFragment"
+        android:name="ke.co.toshngure.androidcoreutils.fragment.GPXFragment"
+        android:label="@string/gpx"
+        tools:layout="@layout/basecode_fragment_base_app"/>
+
+
+    <fragment
+        android:id="@+id/cacheTestFragment"
+        android:name="ke.co.toshngure.androidcoreutils.fragment.CacheTestFragment"
+        android:label="@string/gpx"
+        tools:layout="@layout/basecode_fragment_base_app"/>
+
+    <fragment
+        android:id="@+id/sharedPrefsFragment"
+        android:name="ke.co.toshngure.androidcoreutils.fragment.SharedPrefUtilsFragment"
+        android:label="@string/shared_prefs"
+        tools:layout="@layout/basecode_fragment_base_app"/>
+
+    <fragment
+        android:id="@+id/fragment_logs"
+        android:name="ke.co.toshngure.basecode.logging.LogItemsFragment"
+        android:label="@string/log_items"
+        tools:layout="@layout/basecode_fragment_base_app"/>
+
+
+</navigation>

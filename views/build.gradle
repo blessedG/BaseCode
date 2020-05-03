@@ -1,0 +1,78 @@
+/*
+ * Copyright (c) 2018.
+ *
+ * Anthony Ngure
+ *
+ * Email : anthonyngure25@gmail.com
+ */
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.anthonyngure'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+        pickFirst 'org/joda/time/format/messages_en.properties'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //Android X
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+    // Google Material
+    implementation 'com.google.android.material:material:1.2.0-alpha01'
+
+    // https://github.com/bumptech/glide
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.10.0'
+    kapt 'com.github.bumptech.glide:compiler:4.10.0'
+
+    implementation project(':basecode')
+    implementation project(':extensions')
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

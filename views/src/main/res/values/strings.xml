@@ -1,0 +1,12 @@
+<!--
+  ~ Copyright (c) 2018.
+  ~
+  ~ Anthony Ngure
+  ~
+  ~ Email : anthonyngure25@gmail.com
+  -->
+
+<resources>
+    <string name="dismiss">Dismiss</string>
+    <string name="just_now">Just Now</string>
+</resources>
