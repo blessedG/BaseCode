@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -51,7 +52,7 @@ import retrofit2.Response
  * Email : anthonyngure25@gmail.com.
  */
 
-abstract class BaseAppFragment<FetchedNetworkModel> : Fragment(),
+abstract class BaseAppFragment<FetchedNetworkModel> : NavHostFragment(),
     SwipeRefreshLayout.OnRefreshListener {
 
 
