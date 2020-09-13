@@ -12,11 +12,11 @@ import ke.co.toshngure.basecode.paging.sync.SyncState
 import ke.co.toshngure.basecode.paging.sync.SyncStatus
 
 class ItemsAdapter<LoadedModel>(
-        diffUtil: DiffUtil.ItemCallback<LoadedModel>,
-        @LayoutRes private val layoutRes: Int,
-        private val getItemViewHolder: (View) -> BaseItemViewHolder<LoadedModel>,
-        private val getItemOnClickListener: OnItemClickListener<LoadedModel>?,
-        private val itemRepository: ItemRepository<*, LoadedModel>
+    diffUtil: DiffUtil.ItemCallback<LoadedModel>,
+    @LayoutRes private val layoutRes: Int,
+    private val getItemViewHolder: (View) -> BaseItemViewHolder<LoadedModel>,
+    private val getItemOnClickListener: OnItemClickListener<LoadedModel>?,
+    private val itemRepository: ItemRepository<*, LoadedModel>
 ) : PagedListAdapter<LoadedModel, RecyclerView.ViewHolder>(diffUtil) {
 
 
@@ -40,12 +40,17 @@ class ItemsAdapter<LoadedModel>(
         when (getItemViewType(position)) {
             ITEM_TYPE_ITEM -> {
                 val item = getItem(position)
+
                 @Suppress("UNCHECKED_CAST")
                 val itemHolder = holder as BaseItemViewHolder<LoadedModel>
                 item?.let {
                     itemHolder.bindTo(item)
                     if (getItemOnClickListener != null) {
-                        holder.itemView.setOnClickListener { getItemOnClickListener.onClick(item) }
+                        holder.itemView.setOnClickListener {
+                            getItemOnClickListener.onClick(
+                                item
+                            )
+                        }
                     } else {
                         holder.itemView.setOnClickListener(null)
                     }

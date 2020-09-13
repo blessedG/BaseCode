@@ -90,7 +90,7 @@ abstract class ItemRepository<Model, DatabaseFetchedModel> {
      * To save items into the db, called inside a transaction in background
      */
     protected open fun save(items: List<Model>, args: Bundle?) {
-        getItemDao().insert(items)
+        getItemDao()?.insert(items)
     }
 
     /**
@@ -130,7 +130,7 @@ abstract class ItemRepository<Model, DatabaseFetchedModel> {
 
     abstract fun getItemDataSource(args: Bundle?): DataSource.Factory<Int, DatabaseFetchedModel>
 
-    abstract fun getItemDao(): ItemDao<Model>
+    abstract fun getItemDao(): ItemDao<Model>?
 
     companion object {
         const val TAG = "ItemRepository"
