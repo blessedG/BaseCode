@@ -6,6 +6,8 @@
   ~ Email : anthonyngure25@gmail.com
   -->
 
-<manifest package="ke.co.toshngure.views" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ke.co.toshngure.views">
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

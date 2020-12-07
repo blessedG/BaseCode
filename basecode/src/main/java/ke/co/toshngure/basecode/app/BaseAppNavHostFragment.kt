@@ -277,7 +277,7 @@ abstract class BaseAppNavHostFragment<FetchedNetworkModel> : NavHostFragment(),
                         try {
 
                             val errorJson = JSONObject(errorMessage)
-                            val message = errorJson.getString("error")
+                            val message = errorJson.getString("errors")
 
                             if(TextUtils.isEmpty(message)){
                                 showNetworkErrorDialog(errorMessage)
