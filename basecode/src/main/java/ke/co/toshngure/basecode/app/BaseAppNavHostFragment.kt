@@ -13,7 +13,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +24,6 @@ import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -277,15 +275,23 @@ abstract class BaseAppNavHostFragment<FetchedNetworkModel> : NavHostFragment(),
                         try {
 
                             val errorJson = JSONObject(errorMessage)
-                            val message = errorJson.getString("errors")
 
-                            if(TextUtils.isEmpty(message)){
+                            if (errorJson.has("errors")) {
+
+                                val errors = errorJson.getJSONObject("errors")
+                                val array = errors.getJSONArray("email")
+
+                                if (array.length() > 0) {
+                                    showNetworkErrorDialog(array.get(0).toString())
+                                } else {
+                                    showNetworkErrorDialog(array.toString())
+                                }
+
+                            } else {
                                 showNetworkErrorDialog(errorMessage)
-                            }else {
-                                showNetworkErrorDialog(message)
                             }
 
-                        }catch (e: JSONException){
+                        } catch (e: JSONException) {
                             showNetworkErrorDialog(errorMessage)
                         }
 
