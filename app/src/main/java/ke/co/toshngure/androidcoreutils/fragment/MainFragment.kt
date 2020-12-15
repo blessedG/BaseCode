@@ -5,13 +5,16 @@ import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
 import ke.co.toshngure.androidcoreutils.R
+import ke.co.toshngure.androidcoreutils.api.TestApiService
 import ke.co.toshngure.androidcoreutils.database.AppDatabase
+import ke.co.toshngure.androidcoreutils.users.RegisterUserResponse
 import ke.co.toshngure.basecode.app.BaseAppFragment
 import ke.co.toshngure.basecode.paging.sync.SyncStatesDatabase
 import ke.co.toshngure.extensions.executeAsync
 import kotlinx.android.synthetic.main.fragment_main.*
+import retrofit2.Call
 
-class MainFragment : BaseAppFragment<Any>() {
+class MainFragment : BaseAppFragment<RegisterUserResponse>() {
 
 
     override fun onSetUpContentView(container: FrameLayout) {
@@ -30,7 +33,8 @@ class MainFragment : BaseAppFragment<Any>() {
         albumsBtn.setOnClickListener { navigateWithPermissionsCheck(R.id.albumsFragment) }
 
         imagesPickerBtn.setOnClickListener {
-            navigateWithPermissionsCheck(
+        //makeRequest()
+        navigateWithPermissionsCheck(
                 R.id.testImagesPickerFragment, null,
                 arrayOf(
                     Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -68,4 +72,11 @@ class MainFragment : BaseAppFragment<Any>() {
         const val TAG = "MainFragment"
     }
 
+    override fun getApiCall(): Call<RegisterUserResponse>? {
+        return TestApiService.getTypicodeInstance().register("gogesmwaura1@yahoo.co.uk", "pass1234",  "pass1234", "254722333867", "Good Luck", "")
+    }
+
+    override fun onDataReady(data: RegisterUserResponse) {
+        super.onDataReady(data)
+    }
 }

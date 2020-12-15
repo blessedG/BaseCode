@@ -277,15 +277,27 @@ abstract class BaseAppFragment<FetchedNetworkModel> : Fragment(),
                         try {
 
                             val errorJson = JSONObject(errorMessage)
-                            val message = errorJson.getString("error")
 
-                            if(TextUtils.isEmpty(message)){
+                            BeeLog.i(BaseAppNavHostFragment.TAG, "onResponse errorJson, $errorJson")
+                            BeeLog.i(BaseAppNavHostFragment.TAG, "onResponse errorJson has, ${errorJson.has("errors")}")
+
+                            if (errorJson.has("errors")) {
+
+                                val errors = errorJson.getJSONObject("errors")
+                                val array = errors.getJSONArray("email")
+
+
+                                if (array.length() > 0) {
+                                    showNetworkErrorDialog(array.get(0).toString())
+                                } else {
+                                    showNetworkErrorDialog(array.toString())
+                                }
+
+                            } else {
                                 showNetworkErrorDialog(errorMessage)
-                            }else {
-                                showNetworkErrorDialog(message)
                             }
 
-                        }catch (e: JSONException){
+                        } catch (e: JSONException) {
                             showNetworkErrorDialog(errorMessage)
                         }
 

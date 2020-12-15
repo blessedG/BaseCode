@@ -21,8 +21,7 @@ class MainActivity : AppCompatActivity() {
         val navController = Navigation.findNavController(this, R.id.navHostFragment)
 
         NavigationUI.setupWithNavController(toolbar, navController)
-
-
+        
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -40,4 +39,5 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+    
 }

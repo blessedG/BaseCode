@@ -280,11 +280,18 @@ abstract class BaseAppNavHostFragment<FetchedNetworkModel> : NavHostFragment(),
 
                                 val errors = errorJson.getJSONObject("errors")
                                 val array = errors.getJSONArray("email")
+                                val mobile = errors.getJSONArray("mobile")
 
-                                if (array.length() > 0) {
-                                    showNetworkErrorDialog(array.get(0).toString())
-                                } else {
-                                    showNetworkErrorDialog(array.toString())
+                                when {
+                                    array.length() > 0 -> {
+                                        showNetworkErrorDialog(array.get(0).toString())
+                                    }
+                                    mobile.length() > 0 -> {
+                                        showNetworkErrorDialog(mobile.get(0).toString())
+                                    }
+                                    else -> {
+                                        showNetworkErrorDialog(array.toString())
+                                    }
                                 }
 
                             } else {
