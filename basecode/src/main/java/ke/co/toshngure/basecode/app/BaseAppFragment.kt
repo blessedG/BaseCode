@@ -13,7 +13,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +27,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -279,7 +277,10 @@ abstract class BaseAppFragment<FetchedNetworkModel> : Fragment(),
                             val errorJson = JSONObject(errorMessage)
 
                             BeeLog.i(BaseAppNavHostFragment.TAG, "onResponse errorJson, $errorJson")
-                            BeeLog.i(BaseAppNavHostFragment.TAG, "onResponse errorJson has, ${errorJson.has("errors")}")
+                            BeeLog.i(
+                                BaseAppNavHostFragment.TAG,
+                                "onResponse errorJson has, ${errorJson.has("errors")}"
+                            )
 
                             if (errorJson.has("errors")) {
 
@@ -293,8 +294,15 @@ abstract class BaseAppFragment<FetchedNetworkModel> : Fragment(),
                                     showNetworkErrorDialog(array.toString())
                                 }
 
+                            } else if (errorJson.has("error")) {
+
+                                val error = errorJson.getString("error")
+                                showNetworkErrorDialog(error)
+
                             } else {
+
                                 showNetworkErrorDialog(errorMessage)
+
                             }
 
                         } catch (e: JSONException) {
